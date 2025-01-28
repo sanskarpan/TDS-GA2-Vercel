@@ -14,10 +14,13 @@ app.add_middleware(
 )
 
 # Load marks data
-with open("data/students.json", "r") as f:
-    marks_data = json.load(f)
+with open("data/marks.json", "r") as f:
+    students = json.load(f)
+
+# Create a dictionary for fast lookup
+marks_dict = {student["name"]: student["marks"] for student in students}
 
 @app.get("/api")
 async def get_marks(name: list[str] = Query(...)):
-    results = [marks_data.get(student, None) for student in name]
+    results = [marks_dict.get(student, None) for student in name]
     return JSONResponse(content={"marks": results})

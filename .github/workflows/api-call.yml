@@ -1,0 +1,32 @@
+name: Run FastAPI with Uvicorn
+
+on:
+  push:
+    branches:
+      - main  # Trigger the action when changes are pushed to the 'main' branch
+  workflow_dispatch: # You can manually trigger this action as well
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Set up Python environment
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'  # Use the version of Python you want
+
+      # Install dependencies (assuming you have a requirements.txt file)
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt  # Make sure you have all the required dependencies in requirements.txt
+
+      # Step with email address in the name
+      - name: 23f3003478@ds.study.iitm.ac.in
+        run: echo "Hello, world! This is a basic step with your email address."

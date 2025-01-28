@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Query
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
-import json
+import json, os
 
 app = FastAPI()
 
@@ -12,9 +12,10 @@ app.add_middleware(
     allow_methods=["GET"],
     allow_headers=["*"],
 )
+file_path = os.path.join(os.path.dirname(__file__), "../data/students.json")
 
 # Load marks data
-with open("data/marks.json", "r") as f:
+with open(file_path, "r") as f:
     students = json.load(f)
 
 # Create a dictionary for fast lookup

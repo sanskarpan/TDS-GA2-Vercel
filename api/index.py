@@ -12,7 +12,9 @@ app.add_middleware(
     allow_methods=["GET"],
     allow_headers=["*"],
 )
-file_path = os.path.join(os.path.dirname(__file__), "../public", "students.json")
+
+# Corrected file path to point to the root directory
+file_path = os.path.join(os.path.dirname(__file__), "../students.json")
 
 # Load marks data
 with open(file_path, "r") as f:
